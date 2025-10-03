@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Yashika 💖 From Likun</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Parisienne&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.14/lottie.min.js"></script>
+<style>
+body {
+  margin:0; padding:0;
+  font-family: 'Dancing Script', cursive;
+  background: radial-gradient(ellipse at bottom, #0b0c2a 0%, #1a1c4d 100%);
+  color:#fff;
+  overflow-x:hidden;
+  min-height:100vh;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.8);
+  cursor:pointer;
+}
+
+/* Lamps */
+.lamp {position:absolute;width:20px;height:50px;background:linear-gradient(to bottom,#fff3a0,#f29f05);border-radius:10px;top:50px;}
+.lamp::after {content:'';position:absolute;top:50px;left:-5px;width:30px;height:5px;background:rgba(255,255,255,0.2);border-radius:50%;}
+
+/* Flying roses */
+.rose {position:absolute;width:30px;animation:float 8s linear infinite;}
+@keyframes float {0% {transform:translateY(100vh) rotate(0deg);opacity:0;}10%{opacity:1;}100%{transform:translateY(-50px) rotate(360deg);opacity:0;}}
+
+/* Headers */
+h1,h2{text-align:center;font-family:'Great Vibes', cursive;}
+h1{font-size:3.5em;margin-top:20px;color:#ffb6c1;}
+h2{font-size:2.5em;margin-bottom:20px;color:#ffe4e1;}
+
+/* Sections */
+.section{display:none;padding:20px;text-align:center;}
+
+/* Questions */
+.questions input{
+  width:90%; 
+  max-width:400px;
+  padding:15px; 
+  margin:12px auto; 
+  display:block;
+  border-radius:25px; border:none;
+  box-shadow:0 4px 10px rgba(0,0,0,0.3);
+  font-size:1.3em; text-align:center; font-family:'Parisienne', cursive;
+  background-color:#ff4b5c; color:#fff;
+  word-wrap: break-word;
+}
+.questions input::placeholder{color:#fff;opacity:0.9;white-space:normal;}
+
+/* Buttons */
+button{padding:12px 25px; border:none; border-radius:40px;
+background:#ff4b5c;color:white;font-size:1.2em;cursor:pointer;margin:15px;transition: transform 0.3s;}
+button:hover{transform:scale(1.1);}
+
+/* Postcard */
+.postcard{width:350px;height:240px;margin:50px auto;perspective:1000px;}
+.postcard-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 1s;}
+.postcard.open .postcard-inner{transform:rotateY(180deg);}
+.postcard-front, .postcard-back{
+  position:absolute;width:100%;height:100%;backface-visibility:hidden;
+  border-radius:20px; box-shadow:0 5px 20px rgba(0,0,0,0.4);
+  display:flex; align-items:center; justify-content:center; font-size:1.5em;
+  background:#ff4b5c;text-align:center;padding:20px;color:#fff;text-shadow:1px 1px 3px rgba(0,0,0,0.7);
+}
+.postcard-back{transform:rotateY(180deg); font-size:1.2em;}
+
+/* Character */
+#character{width:220px;margin:0 auto;cursor:pointer;}
+
+/* Game */
+#gameCanvas{background:rgba(255,248,240,0.9);border:2px solid #ff4b5c;border-radius:20px;margin-top:20px;}
+
+/* Intro popup */
+#introPopup{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);
+display:flex;align-items:center;justify-content:center;color:#fff;font-size:2em;font-family:'Great Vibes', cursive;text-align:center;padding:20px;z-index:9999;}
+#introPopup button{margin-top:20px;font-size:1em;}
+
+/* Confetti */
+.confetti-piece{position:absolute;width:10px;height:10px;background:red;opacity:0.8;}
+</style>
+</head>
+<body>
+
+<!-- Intro -->
+<div id="introPopup">
+  <div>
+    <p>Hey Yashika! How's my bestie doing today? 😄</p>
+    <button onclick="startGift()">Start</button>
+  </div>
+</div>
+
+<!-- Lamps -->
+<div class="lamp" style="left:50px;"></div>
+<div class="lamp" style="left:150px;"></div>
+<div class="lamp" style="left:250px;"></div>
+<div class="lamp" style="left:350px;"></div>
+
+<h1>For Yashika 💖</h1>
+<h2>From Likun</h2>
+
+<!-- Flying roses -->
+<script>
+for(let i=0;i<15;i++){
+  let rose=document.createElement('img');
+  rose.src="https://cdn-icons-png.flaticon.com/512/616/616408.png";
+  rose.className="rose";
+  rose.style.left=Math.random()*window.innerWidth+'px';
+  rose.style.animationDuration=(5+Math.random()*5)+'s';
+  document.body.appendChild(rose);
+}
+</script>
+
+<!-- Character -->
+<div id="character"></div>
+<p style="text-align:center;color:#fff;">Click me, your goofy bestie will smile for you! 😁</p>
+
+<!-- Questions Form First 5 -->
+<div class="section" id="questionSection1">
+<h2>Bestie Q&A Time 🤗 (1/2)</h2>
+<form id="questionsForm1">
+  <div class="questions">
+    <input type="text" name="q1" placeholder="What's your funniest memory with me? 😂" required>
+    <input type="text" name="q2" placeholder="What's your all-time favorite snack? 🍿" required>
+    <input type="text" name="q3" placeholder="If I dared you to do something silly, what would it be? 🤪" required>
+    <input type="text" name="q4" placeholder="What's the best joke you’ve ever heard? 😆" required>
+    <input type="text" name="q5" placeholder="One word to describe our friendship? ✨" required>
+  </div>
+  <button type="submit">Next 5 Questions ➡️</button>
+</form>
+</div>
+
+<!-- Questions Form Next 5 -->
+<div class="section" id="questionSection2">
+<h2>Bestie Q&A Time 🤗 (2/2)</h2>
+<form id="questionsForm2">
+  <div class="questions">
+    <input type="text" name="q6" placeholder="If we went on a crazy adventure, where would we go? 🌍" required>
+    <input type="text" name="q7" placeholder="Which movie or series reminds you of us? 🎬" required>
+    <input type="text" name="q8" placeholder="What's your go-to comfort song? 🎶" required>
+    <input type="text" name="q9" placeholder="If I was a cartoon character, who would I be? 🤡" required>
+    <input type="text" name="q10" placeholder="What's a secret talent you’ve got? 🤫" required>
+  </div>
+  <button type="submit">Open My Letter 💌</button>
+</form>
+</div>
+
+<!-- Postcard -->
+<div class="section" id="letterSection">
+<div class="postcard" id="postcard">
+<div class="postcard-inner">
+<div class="postcard-front">Click to Open 💌</div>
+<div class="postcard-back">
+<p>Dear Yashika,<br><br>
+You’re not just a friend—you’re family to me.  
+The laughs, the endless chats, the inside jokes…  
+life wouldn’t be half as fun without you in it.  
+Thanks for being the best bestie ever! 💖<br><br>
+Always your partner-in-crime,<br>Likun 😎</p>
+</div>
+</div>
+</div>
+<button onclick="showGame()">Play Our Bestie Game 🎮</button>
+</div>
+
+<!-- Game -->
+<div class="section" id="gameSection">
+<h2>Catch the Falling Hearts of Friendship 💕 (Max Score 30)</h2>
+<canvas id="gameCanvas" width="400" height="400"></canvas>
+</div>
+
+<!-- Suspense Section -->
+<div class="section" id="suspenseSection">
+<h2>Do you want to open the final bestie letter? 💌</h2>
+<div id="suspenseQuestions"></div>
+</div>
+
+<!-- Final Heartfelt Letter -->
+<div class="section" id="finalLetterSection">
+<div class="postcard" id="finalPostcard">
+<div class="postcard-inner">
+<div class="postcard-front">Click to Open 💖</div>
+<div class="postcard-back">
+<p>My Bestie Yashika,<br><br>
+Sometimes I wonder how life would’ve been without you,  
+and honestly—it would’ve been boring, dull, and plain.  
+You bring so much fun, laughter, and madness into my life,  
+and I’m so lucky to call you my bestie. 💕  
+Cheers to all our crazy memories and the many more to come! 🥂<br><br>
+Your forever partner-in-chaos,<br>Likun 😎</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-funkyelement.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+// Intro
+function startGift(){
+    document.getElementById('introPopup').style.display="none";
+    document.getElementById('questionSection1').style.display="block";
+    document.getElementById('bgMusic').play();
+}
+
+// Character animation
+lottie.loadAnimation({container: document.getElementById('character'),renderer:'svg',loop:true,autoplay:true,path:'https://assets7.lottiefiles.com/packages/lf20_i2eyukor.json'});
+
+// Formspree submission
+function submitForm(formId,nextSection){
+    document.getElementById(formId).addEventListener('submit',function(e){
+        e.preventDefault();
+        const formData=new FormData(this);
+        fetch('https://formspree.io/f/xgvnybea',{
+            method:'POST',
+            body:formData,
+            headers:{'Accept':'application/json'}
+        }).then(response=>{
+            if(response.ok){
+                if(nextSection){document.getElementById(formId).parentElement.style.display='none';document.getElementById(nextSection).style.display='block';}
+                else {document.getElementById('questionSection2').style.display='none';document.getElementById('letterSection').style.display='block';}
+            }else{alert('Oops! Something went wrong.');}
+        }).catch(err=>{alert('Oops! Something went wrong.');});
+    });
+}
+submitForm('questionsForm1','questionSection2');
+submitForm('questionsForm2',null);
+
+// Postcard open
+document.getElementById('postcard').onclick=function(){this.classList.toggle('open');}
+document.getElementById('finalPostcard').onclick=function(){this.classList.toggle('open');}
+
+// Game
+let canvas=document.getElementById('gameCanvas');
+let ctx=canvas.getContext('2d');
+let hearts=[],score=0;
+function Heart(){this.x=Math.random()*canvas.width;this.y=-20;this.size=20;this.speed=2+Math.random()*2;
+this.draw=function(){ctx.fillStyle='red';ctx.beginPath();ctx.moveTo(this.x,this.y);ctx.bezierCurveTo(this.x,this.y-10,this.x-15,this.y-15,this.x,this.y+10);ctx.bezierCurveTo(this.x+15,this.y-15,this.x,this.y-10,this.x,this.y);ctx.fill();}
+this.update=function(){this.y+=this.speed;}}
+
+let player={x:canvas.width/2,y:canvas.height-30,width:60,height:20};
+document.addEventListener('mousemove',e=>{player.x=e.offsetX-player.width/2;});
+function gameLoop(){ctx.clearRect(0,0,canvas.width,canvas.height);
+if(Math.random()<0.03 && hearts.length<30) hearts.push(new Heart());
+hearts.forEach((h,i)=>{h.update();h.draw();if(h.y>canvas.height) hearts.splice(i,1);if(h.y+h.size>player.y && h.x>player.x && h.x<player.x+player.width){hearts.splice(i,1);score++;}});
+ctx.fillStyle='black'; ctx.fillRect(player.x,player.y,player.width,player.height);
+ctx.fillStyle='red'; ctx.font='20px Great Vibes'; ctx.fillText('Score: '+score,10,30);
+if(score>=30){endGame(); return;}
+requestAnimationFrame(gameLoop);}
+function showGame(){document.getElementById('letterSection').style.display='none';document.getElementById('gameSection').style.display='block';gameLoop();}
+function createConfetti(){for(let i=0;i<200;i++){let div=document.createElement('div');div.className='confetti-piece';div.style.left=Math.random()*window.innerWidth+'px';div.style.top=Math.random()*window.innerHeight+'px';div.style.background='hsl('+Math.random()*360+',100%,50%)';div.style.width=div.style.height=Math.random()*8+4+'px';document.body.appendChild(div);fall(div);}}
+function fall(div){let y=parseFloat(div.style.top); let x=parseFloat(div.style.left); let rot=0; function animate(){y+=2; rot+=5; div.style.transform=`translate(${x}px,${y}px) rotate(${rot}deg)`; if(y<window.innerHeight) requestAnimationFrame(animate); else div.remove();} animate();}
+function endGame(){createConfetti();alert("Congrats Yashika! You caught all the hearts of friendship! 🎉💖");document.getElementById("gameSection").style.display="none";startSuspense();}
+
+// Suspense with begging if "No"
+const suspenseQs=["Do you want to open the final letter? 💌","Are you sure? 😏","Do you really want to hear what I feel as your bestie? 🤗","Promise you won’t laugh too hard? 😂","Ready for some cheesy bestie vibes? 😅","Final chance to say NO 😜"];
+let currentQ=0;
+function startSuspense(){document.getElementById("suspenseSection").style.display="block";askNext();}
+function askNext(){if(currentQ>=suspenseQs.length){showFinalLetter(); return;}
+let container=document.getElementById("suspenseQuestions");
+container.innerHTML=`<p>${suspenseQs[currentQ]}</p>
+<button onclick="nextQuestion(true)">Yes</button>
+<button onclick="nextQuestion(false)">No</button>`;}
+function nextQuestion(ans){if(!ans){suspenseQs.splice(currentQ,0,"Come on Yashika, don’t leave your bestie hanging! 😭");} else {currentQ++;}
+askNext();}
+function showFinalLetter(){document.getElementById("suspenseSection").style.display="none";document.getElementById("finalLetterSection").style.display="block";}
+</script>
+</body>
+</html>
